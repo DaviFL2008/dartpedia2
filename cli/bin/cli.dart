@@ -447,7 +447,7 @@ Davi Ferreira - 05/05/26
 
 Fiz os testes e o merge na linha principal
 
-*/
+
 
 
 import 'dart:io';
@@ -517,6 +517,20 @@ void searchWikipedia(List<String>? arguments) async {
  //chamando a API e esperando o resultado
  var articleContent = await getWikipediaArticle(articleTitle);
  print(articleContent); //print o artigo completo usando json por agora
+}
+
+*/
+
+
+import 'dart:io';
+import 'package:http/http.dart' as http; // Add this line
+import 'package:command_runner/command_runner.dart';
+
+const version = '0.1.0'; // Add this line
+
+void main(List<String> arguments) async { // main is now async and awaits the runner
+  var runner = CommandRunner(); // Create an instance of your new CommandRunner
+  await runner.run(arguments); // Call its run method, awaiting its Future<void>
 }
 
 
