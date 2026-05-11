@@ -423,6 +423,33 @@ import 'package:http/http.dart' as http; // Add this line
 ==================================================================================================================================================================================================================================================================================================
 */
 
+/*
+Thiago -  04/05/26 
+
+Fiz as dependencias no pubspec para o http. 
+dependencies:
+  http: ^1.3.0
+E o import package task 1 e 2
+
+Lucas - 04/05/26
+
+Fiz uma implementação de uma funcao de getwikipedia para pegar a API,
+ criando uma Uri object, depois fazendo um http request
+ task 3 e 4
+
+
+Davi Godec - 04/05/26
+
+Fiz a atualizacao o main para chamar o searchwikipedia
+
+
+Davi Ferreira - 05/05/26 
+
+Fiz os testes e o merge na linha principal
+
+*/
+
+
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
 
