@@ -423,7 +423,7 @@ import 'package:http/http.dart' as http; // Add this line
 ==================================================================================================================================================================================================================================================================================================
 
 
-/*
+
 Thiago -  04/05/26 
 
 Fiz as dependencias no pubspec para o http. 
@@ -519,6 +519,7 @@ void searchWikipedia(List<String>? arguments) async {
  print(articleContent); //print o artigo completo usando json por agora
 }
 
+*/
 
 
 
@@ -533,6 +534,6 @@ void main(List<String> arguments) async { // main is now async and awaits the ru
   await runner.run(arguments); // Call its run method, awaiting its Future<void>
 }
 
-*/
+
 
 
