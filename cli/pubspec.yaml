@@ -10,6 +10,11 @@ environment:
 dependencies:
   path: ^1.9.0
   http: ^1.3.0
+<<<<<<< HEAD
+=======
+    command_runner:
+    path: ../command_runner # Aponta para o command_runner - Davi Ferreira
+>>>>>>> 28cdee9 (Lição 3 - Tarefa 1: Adicionar a dependência http)
 
 dev_dependencies:
   lints: ^6.0.0
