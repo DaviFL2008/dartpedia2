@@ -310,4 +310,17 @@ Licenca de uso: Opensource
 PARTE DA TASK 5 ACIMA (PROVAVELMENTE)
 */ 
 
+// ----------------------------------------------------- Feito por Thiago --------------------------------------------------------------
+
+
+class CommandRunner {                                    // CommandRunner: é uma classe que serve como um stand-in simplificado por enquanto. O ITS correr método atualmente apenas imprime os argumentos que recebe.
+                                                         // Executa a lógica de aplicação da linha de comando com os argumentos dados.
+
+  Future<void> run(List<String> input) async {           // future void:  é um tipo de retorno que indica que este método pode realizar operações assíncronas, mas não retorna um valor.
+    print('CommandRunner received arguments: $input');
+  }
+}
+
+// ----------------------------------------------------- Feito por Thiago -------------------------------------------------------------
+
                                                       
