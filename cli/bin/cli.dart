@@ -421,7 +421,34 @@ import 'package:http/http.dart' as http; // Add this line
 
 
 ==================================================================================================================================================================================================================================================================================================
-*/
+
+
+
+Thiago -  04/05/26 
+
+Fiz as dependencias no pubspec para o http. 
+dependencies:
+  http: ^1.3.0
+E o import package task 1 e 2
+
+Lucas - 04/05/26
+
+Fiz uma implementação de uma funcao de getwikipedia para pegar a API,
+ criando uma Uri object, depois fazendo um http request
+ task 3 e 4
+
+
+Davi Godec - 04/05/26
+
+Fiz a atualizacao o main para chamar o searchwikipedia
+
+
+Davi Ferreira - 05/05/26 
+
+Fiz os testes e o merge na linha principal
+
+
+
 
 /*
 Thiago -  04/05/26 
@@ -519,15 +546,10 @@ void searchWikipedia(List<String>? arguments) async {
  print(articleContent); //print o artigo completo usando json por agora
 }
 
-<<<<<<< HEAD
-
-
-/*
-=======
 */
 
 
->>>>>>> 28cdee9 (Lição 3 - Tarefa 1: Adicionar a dependência http)
+(Lição 3 - Tarefa 1: Adicionar a dependência http)
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
 import 'package:command_runner/command_runner.dart';
@@ -539,5 +561,5 @@ void main(List<String> arguments) async { // main is now async and awaits the ru
   await runner.run(arguments); // Call its run method, awaiting its Future<void>
 }
 
-*/
+
 
