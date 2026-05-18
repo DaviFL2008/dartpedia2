@@ -306,6 +306,8 @@ usage Este getter fornece uma string de uso simples, combinando o comando name e
 
 -------------------------------------------------------------------------------------
 Licenca de uso: Opensource
+
+PARTE DA TASK 5 ACIMA (PROVAVELMENTE)
 */ 
 
                                                       
