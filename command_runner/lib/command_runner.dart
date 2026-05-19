@@ -1,5 +1,4 @@
 // ----------------------------------------------------- Feito por Thiago ------------------------------------------------------------
-
 /* 
 	 Um corredor de comando simples para lidar com argumentos de linha de comando.
 
