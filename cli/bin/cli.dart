@@ -446,7 +446,7 @@ Fiz a atualizacao o main para chamar o searchwikipedia
 Davi Ferreira - 05/05/26 
 
 Fiz os testes e o merge na linha principal
-*/
+
 
 
 
@@ -532,3 +532,5 @@ void main(List<String> arguments) async { // main is now async and awaits the ru
   var runner = CommandRunner(); // Create an instance of your new CommandRunner
   await runner.run(arguments); // Call its run method, awaiting its Future<void>
 }
+
+*/
