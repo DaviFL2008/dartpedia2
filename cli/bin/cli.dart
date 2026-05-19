@@ -549,7 +549,7 @@ void searchWikipedia(List<String>? arguments) async {
 */
 
 
-(Lição 3 - Tarefa 1: Adicionar a dependência http)
+(Lição 4 - Tarefa 1: Adicionar a dependência http)
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
 import 'package:command_runner/command_runner.dart';
