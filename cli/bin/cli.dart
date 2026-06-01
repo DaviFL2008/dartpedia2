@@ -473,7 +473,7 @@ Fiz a atualizacao o main para chamar o searchwikipedia
 Davi Ferreira - 05/05/26 
 
 Fiz os testes e o merge na linha principal
-
+*/
 
 
 
@@ -548,7 +548,7 @@ void searchWikipedia(List<String>? arguments) async {
 
 */
 
-
+/*
 (Lição 4 - Tarefa 1: Adicionar a dependência http)
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
@@ -561,5 +561,13 @@ void main(List<String> arguments) async { // main is now async and awaits the ru
   await runner.run(arguments); // Call its run method, awaiting its Future<void>
 }
 
+*/
 
+import 'package:command_runner/command_runner.dart';
 
+const version = '0.0.1';
+
+void main(List<String> arguments) {
+  var commandRunner = CommandRunner()..addCommand(HelpCommand());
+  commandRunner.run(arguments);
+}
