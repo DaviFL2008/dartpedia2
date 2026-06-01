@@ -5,7 +5,7 @@
 
 	 Documentação mais extensa para esta biblioteca vai aqui 
 
-*/
+
 
 	library; 			// Declara este arquivo como uma biblioteca, que define fronteiras e a interface pública de uma unidade reutilizavel de código Dart.
 
@@ -15,3 +15,22 @@
 //	  Exportar quaisquer outras bibliotecas destinadas a clientes deste pacote. 
 
 // ----------------------------------------------------- Feito por Thiago ------------------------------------------------------------
+*/
+
+
+// ------ Feito por lucas part 2 tarefa 5 ------
+
+/// Support for doing something awesome.
+///
+/// More dartdocs go here.
+library;
+
+export 'src/arguments.dart';
+export 'src/command_runner_base.dart';
+export 'src/help_command.dart';
+
+// TODO: Export any libraries intended for clients of this package.
+
+
+
+/*
