@@ -94,7 +94,7 @@ Durante o desenvolvimento do Dartpedia2 estão sendo aplicados conceitos estudad
 
 
 **Status do Projeto**
-🚧 Em desenvolvimento
+🚧 Em desenvolvimento Atualmente Lição 6
 
 **Funcionalidades implementadas**
 * [x] Comando help
