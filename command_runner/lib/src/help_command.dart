@@ -1,5 +1,5 @@
-mport 'dart:async';
-
+import 'dart:async';
+import 'command_runner_base.dart';
 import 'arguments.dart';
 
 // Prints program and argument usage.
@@ -37,8 +37,8 @@ class HelpCommand extends Command {
 
   @override
   FutureOr<Object?> run(ArgResults args) async {
-    var usage = runner.usage;
-    for (var command in runner.commands) {
+    var usage = runner!.usage;
+    for (var command in runner!.commands) {
       usage += '\n ${command.usage}';
     }
 
