@@ -1,4 +1,4 @@
-**Dartpedia2**
+**Dartpedia2 - T2DEV-T3 - Professor: Irineu Moura Caldeira**
 
 **Integrantes da Equipe**
 * Thiago Silva de Moraes
