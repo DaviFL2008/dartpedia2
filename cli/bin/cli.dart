@@ -567,7 +567,7 @@ import 'package:http/http.dart' as http; // Add this line
 
 import 'package:command_runner/command_runner.dart';
 
-const version = '0.0.1';
+const version = '0.2.1';
 
 
 void printUsage() { // Add this new function
