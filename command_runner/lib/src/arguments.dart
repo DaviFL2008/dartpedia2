@@ -103,21 +103,72 @@ Licença de Uso: Open Source
 
 */
 
-command_runner/lib/src/arguments.dart
+//command_runner/lib/src/arguments.dart
+import 'dart:async';
+import 'command_runner_base.dart';
 
-enum Optiontype { flag, optiom }
+enum OptionType { flag, option }
 
-// Paste this new class below the enum you added
 abstract class Argument {
   String get name;
+  String? get abbr; // ADICIONADO: O command_runner_base precisa disso
   String? get help;
-
-  // In the case of flags, the default value is a bool.
-  // In other options and commands, the default value is a String.
-  // NB: flags are just Option objects that don't take arguments
   Object? get defaultValue;
   String? get valueHelp;
-
   String get usage;
 }
 
+class Option implements Argument {
+  @override
+  final String name;
+  @override
+  final String? abbr; // ADICIONADO
+  @override
+  final String? help;
+  @override
+  final Object? defaultValue;
+  @override
+  final String? valueHelp;
+  final OptionType type;
+
+  Option(
+    this.name, { // Mudado para posicional para aceitar o formato do help_command
+    this.abbr,
+    this.help,
+    this.defaultValue,
+    this.valueHelp,
+    required this.type,
+  });
+
+  @override
+  String get usage => '  --$name\t\t${help ?? ''}';
+}
+
+class ArgResults {
+  Command? command;
+  String? commandArg; // ADICIONADO: Guarda argumentos extras passados ao comando
+  Map<Option, Object?> options = {}; // Mudado para aceitar atribuição direta (results.options = ...)
+}
+
+abstract class Command {
+  String get name;
+  String get description;
+  
+  CommandRunner? runner;
+
+  final List<Option> _options = [];
+  List<Option> get options => _options;
+
+  // Ajustado o primeiro parâmetro para posicional para bater com o help_command.dart
+  void addFlag(String name, {String? abbr, String? help, bool? defaultValue}) {
+    _options.add(Option(name, abbr: abbr, help: help, defaultValue: defaultValue ?? false, type: OptionType.flag));
+  }
+
+  void addOption(String name, {String? abbr, String? help, String? defaultValue, String? valueHelp}) {
+    _options.add(Option(name, abbr: abbr, help: help, defaultValue: defaultValue, valueHelp: valueHelp, type: OptionType.option));
+  }
+
+  FutureOr<Object?> run(ArgResults args);
+
+  String get usage => 'Usage: $name [options]';
+}
