@@ -423,7 +423,7 @@ import 'package:http/http.dart' as http; // Add this line
 ==================================================================================================================================================================================================================================================================================================
 
 
-/*
+
 Thiago -  04/05/26 
 
 Fiz as dependencias no pubspec para o http. 
@@ -449,6 +449,46 @@ Fiz os testes e o merge na linha principal
 
 
 
+
+/*
+Thiago -  04/05/26 
+
+Fiz as dependencias no pubspec para o http. 
+dependencies:
+  http: ^1.3.0
+E o import package task 1 e 2
+
+Lucas - 04/05/26
+
+Fiz uma implementação de uma funcao de getwikipedia para pegar a API,
+ criando uma Uri object, depois fazendo um http request
+ task 3 e 4
+
+
+Davi Godec - 04/05/26
+
+Fiz a atualizacao o main para chamar o searchwikipedia
+
+
+Davi Ferreira - 05/05/26 
+
+Fiz os testes e o merge na linha principal
+
+
+/*
+(Lição 4 - Tarefa 1: Adicionar a dependência http)
+import 'dart:io';
+import 'package:http/http.dart' as http; // Add this line
+import 'package:command_runner/command_runner.dart';
+
+const version = '0.1.0'; // Add this line
+
+void main(List<String> arguments) async { // main is now async and awaits the runner
+  var runner = CommandRunner(); // Create an instance of your new CommandRunner
+  await runner.run(arguments); // Call its run method, awaiting its Future<void>
+}
+
+*/
 
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
@@ -519,18 +559,85 @@ void searchWikipedia(List<String>? arguments) async {
  print(articleContent); //print o artigo completo usando json por agora
 }
 
-
 */
 
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
+
+
 import 'package:command_runner/command_runner.dart';
 
-const version = '0.1.0'; // Add this line
+const version = '0.2.1';
 
-void main(List<String> arguments) async { // main is now async and awaits the runner
-  var runner = CommandRunner(); // Create an instance of your new CommandRunner
-  await runner.run(arguments); // Call its run method, awaiting its Future<void>
+
+void printUsage() { // Add this new function
+  print(
+    "The following commands are valid: 'help', 'version', 'search <ARTICLE-TITLE>'"
+  );
+
 }
+
+void main(List<String> arguments) {
+  // [Step 6 update] Add onError method
+  var commandRunner = CommandRunner(
+    onError: (Object error) {
+      if (error is Error) {
+        throw error;
+      }
+      if (error is Exception) {
+        print(error);
+      }
+    },
+  )..addCommand(HelpCommand());
+  commandRunner.run(arguments);
+}
+
+
+
+
+Future<String> getWikipediaArticle(String articleTitle) async {
+ final url = Uri.https(
+  'en.wikipedia.org', //Wikipedia API domini
+  '/api/rest_v1/page/summary/$articleTitle', // API path for article summary
+
+);
+final response = await http.get(url); // Faz o request do HTTP
+
+if (response.statusCode == 200) {
+  return response.body; // Return o response do body if sucesso
+ }
+
+//Retorna um erro mensagem se o pedido falhou
+return 'Error: Failed to fetch article "$articleTitle". Status code: ${response.statusCode}';
+
+}
+
+void searchWikipedia(List<String>? arguments) async {
+  final String articleTitle;
+
+  if (arguments == null || arguments.isEmpty) {
+    print('Please provide an article title.');
+    final inputFromStdin = stdin.readLineSync(); // Read input
+    if (inputFromStdin == null || inputFromStdin.isEmpty) {
+      print('No article title provided. Exiting.');
+      return; // Exit the function if no valid input
+    }
+    articleTitle = inputFromStdin;
+  } else {
+    articleTitle = arguments.join(' ');
+  }
+
+  print('Looking up articles about "$articleTitle". Please wait.');
+ 
+ //chamando a API e esperando o resultado
+ var articleContent = await getWikipediaArticle(articleTitle);
+ print(articleContent); //print o artigo completo usando json por agora
+}
+
+
+
+
+
+
 
 

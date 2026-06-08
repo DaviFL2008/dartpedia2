@@ -1,23 +1,15 @@
-// ... (beginning of searchWikipedia function, after determining articleTitle)
+//Parte feita por Davi Ferreira Leite
+// ... (your existing printUsage() function)
 
-void searchWikipedia(List<String>? arguments) async {
-  final String articleTitle;
-  if (arguments == null || arguments.isEmpty) {
-    print('Please provide an article title.');
-    final inputFromStdin = stdin.readLineSync();
-    if (inputFromStdin == null || inputFromStdin.isEmpty) {
-      print('No article title provided. Exiting.');
-      return;
-    }
-    articleTitle = inputFromStdin;
-  } else {
-    articleTitle = arguments.join(' ');
-  }
+Future<String> getWikipediaArticle(String articleTitle) async {
+  //You'll add more code here soon
+}
 
-  print('Looking up articles about "$articleTitle". Please wait.');
-
-  // Call the API and await the result
-  var articleContent = await getWikipediaArticle(articleTitle);
-  print(articleContent); // Print the full article response (raw JSON for now)
+Future<String> getWikipediaArticle(String articleTitle) async {
+  final url = Uri.https(
+    'en.wikipedia.org', // Wikipedia API domain
+    '/api/rest_v1/page/summary/$articleTitle', // API path for article summary
+  );
+  // ...
 }
 
