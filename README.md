@@ -94,7 +94,11 @@ Durante o desenvolvimento do Dartpedia2 estão sendo aplicados conceitos estudad
 
 
 **Status do Projeto**
-🚧 Em desenvolvimento Atualmente Lição 6
+🚧 Em desenvolvimento. Atualmente Lição 6 Completa
+
+### Como testar o funcionamento atual (Lição 06):
+* **Comando válido:** `dart run bin/cli.dart help` (Executa o motor de ajuda do pacote).
+* **Tratamento de erro elegante:** `dart run bin/cli.dart version` ou qualquer outro argumento (Demonstra o `ArgumentException` sendo capturado pelo `onError` sem quebrar a execução do CLI).
 
 **Funcionalidades implementadas**
 * [x] Comando help
