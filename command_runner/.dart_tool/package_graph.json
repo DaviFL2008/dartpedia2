@@ -1,0 +1,14 @@
+{
+  "roots": [
+    "command_runner"
+  ],
+  "packages": [
+    {
+      "name": "command_runner",
+      "version": "1.0.0",
+      "dependencies": [],
+      "devDependencies": []
+    }
+  ],
+  "configVersion": 1
+}
