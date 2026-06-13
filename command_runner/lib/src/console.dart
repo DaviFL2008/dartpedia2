@@ -51,7 +51,6 @@ enum ConsoleColor {
   final int g;
   final int b;
 
-
   /// Change text color for all future output (until reset)
   /// ```dart
   /// print('hello'); // prints in terminal default color

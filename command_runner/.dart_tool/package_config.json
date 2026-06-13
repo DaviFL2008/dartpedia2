@@ -10,5 +10,7 @@
   ],
   "generator": "pub",
   "generatorVersion": "3.12.1",
-  "pubCache": "file:///home/l_novais/.pub-cache"
+  "flutterRoot": "file:///home/codespace/flutter",
+  "flutterVersion": "3.44.1",
+  "pubCache": "file:///home/codespace/.pub-cache"
 }
