@@ -1,5 +1,6 @@
 name: command_runner
 description: Pacote customizado de comandos
 version: 1.0.0
+resolution: workspace # Add this line
 environment:
   sdk: '>=3.0.0 <4.0.0'
