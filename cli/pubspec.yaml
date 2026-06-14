@@ -13,6 +13,10 @@ dependencies:
   http: ^1.3.0
   command_runner:
     path: ../command_runner # Aponta para o command_runner - Davi Ferreira
+  wikipedia:
+    path: ../wikipedia
+  # Add the following line
+  logging: ^1.2.0
 
 dev_dependencies:
   lints: ^6.0.0

@@ -385,7 +385,7 @@ class CommandRunner {
       UnmodifiableSetView<Command>(<Command>{..._commands.values});
 
   // Define the onError property.
-  FutureOr<void> Function(Object)? onError;
+ 
 
   void addCommand(Command command) {
     _commands[command.name] = command;

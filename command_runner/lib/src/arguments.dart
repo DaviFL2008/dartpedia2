@@ -146,8 +146,19 @@ class Option implements Argument {
 
 class ArgResults {
   Command? command;
-  String? commandArg; // ADICIONADO: Guarda argumentos extras passados ao comando
-  Map<Option, Object?> options = {}; // Mudado para aceitar atribuição direta (results.options = ...)
+  String? commandArg; 
+  Map<Option, Object?> options = {}; 
+
+  // ADICIONE ESTE OPERADOR ABAIXO:
+  dynamic operator [](String optionName) {
+    // Procura no mapa 'options' se existe alguma chave cujo nome seja igual ao optionName
+    for (var entry in options.entries) {
+      if (entry.key.name == optionName) {
+        return entry.value;
+      }
+    }
+    return null; // Retorna null se não encontrar a flag
+  }
 }
 
 abstract class Command {
