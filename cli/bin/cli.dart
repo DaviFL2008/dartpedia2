@@ -86,7 +86,8 @@ Built cli:cli.
 Hello world: 42!
 
 ----------------------------------------------------------
-
+*/
+/*
 Versao 2 - v1.1 30/03/26, 15:47, Lucas Franco de Novais 
 
 atualizacao do codigo para uma nova versao
@@ -126,7 +127,8 @@ Voce devera ver agora:
 Dartpedia CLI version 0.0.2
 
 ----------------------------------------------------------
-
+*/
+/*
 
 Versao 4 -  v1.3 30/03/26, 16:33, Lucas Franco de Novais
 
@@ -194,7 +196,8 @@ Saida 1 -> The following commands are valid: 'help', 'version', 'search <ARTICLE
 Saida 2 -> The following commands are valid: 'help', 'version', 'search <ARTICLE-TITLE>
 
 ----------------------------------------------------------
-
+*/
+/*
 Versao 6 - 1.5 06/04/26, 16:09, Lucas Franco de Novais
 
 Definicao da funcao searchwikipedia
@@ -279,7 +282,8 @@ Voce deveria ver:
 searchWikipedia received arguments: null
 
 ----------------------------------------------------------
-
+*/
+/*
 Versao 8 - 1.7 06/04/26, 16:35, Lucas Franco de Novais
 
 Atualizacao do codigo  para lidar com a falta de titulo usando import dart:io
@@ -398,7 +402,8 @@ Here ya go!
 (Pretend this is an article about "Dart Programming")
 
 -----------------------------------------------------------------------------------------------------------------
-
+*/
+/*
 Versao 10 - 1.9 - 28/04/26 - 16:26 - Lucas Franco de Novais
 
 add o http primeiro add uma future string : O Future<String>tipo de retorno indica que esta função eventualmente produzirá um Stringresultado, mas não imediatamente, pois é uma operação assíncrona.
@@ -450,7 +455,7 @@ Fiz os testes e o merge na linha principal
 
 
 
-/*
+
 Thiago -  04/05/26 
 
 Fiz as dependencias no pubspec para o http. 
@@ -473,9 +478,9 @@ Fiz a atualizacao o main para chamar o searchwikipedia
 Davi Ferreira - 05/05/26 
 
 Fiz os testes e o merge na linha principal
-*/
 
-/*
+
+
 (Lição 4 - Tarefa 1: Adicionar a dependência http)
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
@@ -488,10 +493,13 @@ void main(List<String> arguments) async { // main is now async and awaits the ru
   await runner.run(arguments); // Call its run method, awaiting its Future<void>
 }
 
-*/
+
 
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
+import 'package:command_runner/command_runner.dart';
+import 'package:cli/cli.dart';
+
 
 
 const version = '0.1.0'; // Add this line
@@ -504,18 +512,30 @@ void printUsage() { // Add this new function
 
 }
 
-void main(List<String> arguments) {
-  if (arguments.isEmpty || arguments.first == 'help') {
-    printUsage();
-  } else if (arguments.first == 'version') {
-    print('Dartpedia CLI version $version');
-  } else if (arguments.first == 'wikipedia') { // Changed to 'wikipedia'
-    // Pass all arguments *after* 'wikipedia' to searchWikipedia
-    final inputArgs = arguments.length > 1 ? arguments.sublist(1) : null;
-    searchWikipedia(inputArgs); // Call searchWikipedia (no 'await' needed here for main)
-  } else {
-    printUsage(); // Catch all for any unrecognized command.
-  }
+void main(List<String> arguments) async {
+  final errorLogger = initFileLogger('errors');
+  final app =
+      CommandRunner(
+          onOutput: (String output) async {
+            await write(output);
+          },
+          onError: (Object error) {
+            if (error is Error) {
+              errorLogger.severe(
+                '[Error] ${error.toString()}\n${error.stackTrace}',
+              );
+              throw error;
+            }
+            if (error is Exception) {
+              errorLogger.warning(error);
+            }
+          },
+        )
+        ..addCommand(HelpCommand())
+        ..addCommand(SearchCommand(logger: errorLogger))
+        ..addCommand(GetArticleCommand(logger: errorLogger));
+
+  app.run(arguments);
 }
 
 
@@ -563,9 +583,8 @@ void searchWikipedia(List<String>? arguments) async {
 
 import 'dart:io';
 import 'package:http/http.dart' as http; // Add this line
-
-
 import 'package:command_runner/command_runner.dart';
+import 'package:cli/cli.dart';
 
 const version = '0.2.1';
 
@@ -577,19 +596,31 @@ void printUsage() { // Add this new function
 
 }
 
-void main(List<String> arguments) {
-  // [Step 6 update] Add onError method
-  var commandRunner = CommandRunner(
-    onError: (Object error) {
-      if (error is Error) {
-        throw error;
-      }
-      if (error is Exception) {
-        print(error);
-      }
-    },
-  )..addCommand(HelpCommand());
-  commandRunner.run(arguments);
+
+void main(List<String> arguments) async {
+  final errorLogger = initFileLogger('errors');
+  final app =
+      CommandRunner(
+          onOutput: (String output) async {
+            await write(output);
+          },
+          onError: (Object error) {
+            if (error is Error) {
+              errorLogger.severe(
+                '[Error] ${error.toString()}\n${error.stackTrace}',
+              );
+              throw error;
+            }
+            if (error is Exception) {
+              errorLogger.warning(error);
+            }
+          },
+        )
+        ..addCommand(HelpCommand())
+        ..addCommand(SearchCommand(logger: errorLogger))
+        ..addCommand(GetArticleCommand(logger: errorLogger));
+
+  app.run(arguments);
 }
 
 

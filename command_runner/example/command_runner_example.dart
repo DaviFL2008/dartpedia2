@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:command_runner/command_runner.dart';
 
 class PrettyEcho extends Command {
